@@ -83,12 +83,19 @@ Implemented by
 
 ###	Use Case create test result
 API Endpoint:
--	Method: POST /api/v1/lab/results
--	Body:  [{"id": "hashedGUID,
-             "result": [1-3]},
-            {...}
-           ] 
--	Authentication: none
+-	Method: `POST` `/api/v1/lab/results`
+-	Body:
+    ```json
+    [
+      {
+        "id": "hashedGUID,
+        "result": [1-3]
+      },
+      {...}
+    ]
+    ```
+-	Authentication: `none`
+
 1 = negative,
 2 = positive,
 3 = test result invalid  
@@ -102,14 +109,17 @@ Steps:
 It is important to note, that only one Registration Token will be generated for a specific GUID or teleTAN. The use case generates Registration Tokens from hashed GUIDs xor teleTANs. This is a measure to increase data privacy.
 
 API Endpoint:
--	Method: POST /api/v1/app/result
-Body: { 
-"id": "hashedGUID"
-}
--	Authentication: none  
+-	Method: `POST` `/api/v1/app/result`
+- Body: 
+    ```json
+    {
+      "id": "hashedGUID"
+    }
+    ```
+-	Authentication: `none`  
 
 Steps:  
-1.	The client, the verification server, retrieves the result by providing a hashedGUID, which was scanned by a user, routed through the verification server to the test result server.
+1.	The client (verification server) retrieves the result by providing a hashedGUID, which was scanned by a user, routed through the verification server to the test result server.
 
 
 ###	Use Case Delete data to keep data privacy high
